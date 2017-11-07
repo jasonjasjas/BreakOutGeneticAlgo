@@ -9,7 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "BreakOut Clone";
 		config.height = 850;
-		config.width = 731;
+		config.width = 731+200;
 		new LwjglApplication(new BreakOut(), config);
 	}
 }
