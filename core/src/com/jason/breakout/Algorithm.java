@@ -6,7 +6,7 @@ package com.jason.breakout;
 public class Algorithm {
     private static final double uniformRate = 0.5;
     private static final double mutationRate = 0.02;
-    private static final int tournamentSize = 50;
+    private static final int tournamentSize = 10;
     private static final boolean elitism = true;
     public Population evolvePopulation(Population pop) {
         Population newPopulation =  new Population(pop.players.length,false);
@@ -101,14 +101,44 @@ class Population {
 }
 
 class Player {
-    static int geneLength = 74;
-    float[] gene = new float[geneLength];
+    static int inputLength = 2;
+    static int hiddenLength = 8;
+    static int outputLength = 2;
+    float[] gene = new float[inputLength*hiddenLength*outputLength];
+
     int fitness;
 
     public Player(){
-        for (int i = 0; i < geneLength; i++) {
-            gene[i] = (float)Math.random();
+        for (int i = 0; i < gene.length; i++) {
+            gene[i] = (float)((Math.random()-0.5)*2);
         }
     }
 
+    public float[] compute(float[] input){
+        float[] output = new float[outputLength];
+        float[] hidden = new float[hiddenLength];
+        int g = 0;
+        for (int i = 0; i < hiddenLength; i++) {
+            for (int j = 0; j < inputLength; j++) {
+                hidden[i] += gene[g]*input[j];
+                g++;
+            }
+            hidden[i] = sigma(hidden[i]);
+        }
+
+        for (int i = 0; i < outputLength; i++) {
+            for (int j = 0; j < hiddenLength; j++) {
+                output[i] += gene[g]*hidden[j];
+                g++;
+            }
+            output[i] = sigma(output[i]);
+        }
+        return output;
+    }
+
+    static float sigma(float x){
+        return (float)(1/(1+Math.exp(-x)));
+    }
+
 }
+
