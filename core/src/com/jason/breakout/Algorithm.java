@@ -68,7 +68,7 @@ public class Algorithm {
         for (int i = 0; i < indiv.gene.length; i++) {
             if (Math.random() <= mutationRate) {
                 // Create random gene
-                indiv.gene[i] = ((float) Math.random()*20) -10;
+                indiv.gene[i] = (float)((Math.random()-0.5)*2);
             }
         }
     }
@@ -103,8 +103,8 @@ class Population {
 class Player {
     static int inputLength = 2;
     static int hiddenLength = 8;
-    static int outputLength = 2;
-    float[] gene = new float[inputLength*hiddenLength*outputLength];
+    static int outputLength = 1;
+    float[] gene = new float[inputLength*hiddenLength + hiddenLength*outputLength];
 
     int fitness;
 
