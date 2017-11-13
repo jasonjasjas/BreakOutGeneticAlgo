@@ -143,7 +143,7 @@ public class BreakOut extends ApplicationAdapter {
         buttonExport.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                
+
             }
         });
         pop = new Population(popSize, true);
