@@ -4,6 +4,7 @@ package com.jason.breakout;
  * Created by JasonWong on 07-Nov-17.
  */
 public class Algorithm {
+	//ttest
     private static final double uniformRate = 0.5;
     private static final double mutationRate = 0.02;
     private static final int tournamentSize = 10;
